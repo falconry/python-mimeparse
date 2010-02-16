@@ -30,5 +30,10 @@
 	      [[["application/json", "text/html"], "application/json, text/html;q=0.9"], "application/json", "verify fitness ordering"],
 	      [[["image/*", "application/xml"], "image/png"], "image/*", "match using a type wildcard"],
 	      [[["image/*", "application/xml"], "image/*"], "image/*", "match using a wildcard for both requested and supported"]
+],
+
+"parse_mime_type": [
+		   ["application/xhtml;q=0.5", ["application", "xhtml", {"q": "0.5"}]],
+		   ["application/xhtml;q=0.5;ver=1.2", ["application", "xhtml", {"q": "0.5", "ver": "1.2"}]]
 ]
 }

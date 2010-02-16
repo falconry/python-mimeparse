@@ -34,6 +34,12 @@ def test_best_match(args, expected):
     message = "Expected: '%s' but got %s" % (expected, result)
     assert expected == result, message
 
+def test_parse_mime_type(args, expected):
+    expected = tuple(expected)
+    result = mimeparse.parse_mime_type(args)
+    message = "Expected: '%s' but got %s" % (expected, result)
+    assert expected == result, message
+
 def add_tests(suite, json_object, func_name, test_func):
     test_data = json_object[func_name]
     for test_datum in test_data:
@@ -52,6 +58,7 @@ def run_tests():
     add_tests(suite, json_object, "parse_media_range", test_parse_media_range)
     add_tests(suite, json_object, "quality", test_quality)
     add_tests(suite, json_object, "best_match", test_best_match)
+    add_tests(suite, json_object, "parse_mime_type", test_parse_mime_type)
 
     test_runner = unittest.TextTestRunner(verbosity=1)
     test_runner.run(suite)
