@@ -14,7 +14,7 @@ Contents:
     - best_match():        Choose the mime-type with the highest quality ('q') from a list of candidates. 
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 __author__ = 'Joe Gregorio'
 __email__ = "joe@bitworking.org"
 __credits__ = ""
@@ -111,13 +111,24 @@ def best_match(supported, header):
     match for all the media-ranges listed in header. The value of
     header must be a string that conforms to the format of the 
     HTTP Accept: header. The value of 'supported' is a list of
-    mime-types.
+    mime-types. The list of supported mime-types should be sorted
+    in order of increasing desirability, in case of a situation 
+    where there is a tie
     
     >>> best_match(['application/xbel+xml', 'text/xml'], 'text/*;q=0.5,*/*; q=0.1')
     'text/xml'
     """
-    parsed_header = [parse_media_range(r) for r in header.split(",")]
-    weighted_matches = [(fitness_and_quality_parsed(mime_type, parsed_header), mime_type)\
-            for mime_type in supported]
+    parsed_header = [parse_media_range(r) for r in _filter_blank(header.split(","))]
+    weighted_matches = []
+    pos = 0
+    for mime_type in supported:
+        weighted_matches.append((fitness_and_quality_parsed(mime_type,
+                                 parsed_header), pos, mime_type)) 
+        pos += 1
     weighted_matches.sort()
-    return weighted_matches[-1][0][1] and weighted_matches[-1][1] or ''
+    return weighted_matches[-1][0][1] and weighted_matches[-1][2] or ''
+
+def _filter_blank(i):
+    for s in i:
+        if s.strip():
+            yield s

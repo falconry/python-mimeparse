@@ -29,7 +29,9 @@
 	      [[["application/json", "text/html"], "application/json, text/javascript, */*"], "application/json", "common AJAX scenario"],
 	      [[["application/json", "text/html"], "application/json, text/html;q=0.9"], "application/json", "verify fitness ordering"],
 	      [[["image/*", "application/xml"], "image/png"], "image/*", "match using a type wildcard"],
-	      [[["image/*", "application/xml"], "image/*"], "image/*", "match using a wildcard for both requested and supported"]
+	      [[["image/*", "application/xml"], "image/*"], "image/*", "match using a wildcard for both requested and supported"],
+              [[["text/html", "application/rdf+xml"], "text/html, application/rdf+xml"], "application/rdf+xml", "match should use highest order of supported when there is a tie"],
+              [[["application/rdf+xml", "text/html"], "text/html, application/rdf+xml"], "text/html", "match should use highest order of supported when there is a tie"]
 ],
 
 "parse_mime_type": [
