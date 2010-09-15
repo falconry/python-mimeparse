@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: mimeparse
+Version: 0.1.3
+Author: Joe Gregorio
+Author-email: joe@bitworking.org
+Maintainer: Joe Gregorio
+Maintainer-email: joe@bitworking.org
+Home-page: http://code.google.com/p/mimeparse/
+Download-url: http://code.google.com/p/mimeparse/downloads/list
+Summary: mimeparse
+License: MIT License
+Description: A module provides basic functions for parsing mime-type names and matching them against a list of media-ranges.
+Keywords: python mime-type
+Platform: any
+
