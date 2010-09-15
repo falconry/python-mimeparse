@@ -29,7 +29,7 @@ def parse_mime_type(mime_type):
        ('application', 'xhtml', {'q', '0.5'})
        """
     parts = mime_type.split(";")
-    params = dict([tuple([s.strip() for s in param.split("=")])\
+    params = dict([tuple([s.strip() for s in param.split("=", 1)])\
             for param in parts[1:] ])
     full_type = parts[0].strip()
     # Java URLConnection class sends an Accept header that includes a single "*"
