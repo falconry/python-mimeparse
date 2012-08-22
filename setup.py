@@ -1,6 +1,7 @@
-﻿# -*- coding: utf-8 -*-
+﻿
+# -*- coding: utf-8 -*-
 
-#old way 
+#old way
 from distutils.core import setup
 
 #new way
@@ -11,7 +12,7 @@ setup(name='mimeparse',
       description='A module provides basic functions for parsing mime-type names and matching them against a list of media-ranges.',
       long_description="""
 This module provides basic functions for handling mime-types. It can handle
-matching mime-types against a list of media-ranges. See section 14.1 of 
+matching mime-types against a list of media-ranges. See section 14.1 of
 the HTTP specification [RFC 2616] for a complete explanation.
 
    http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
@@ -30,7 +31,7 @@ Contents:
           'Programming Language :: Python',
           'Topic :: Internet :: WWW/HTTP',
           'Topic :: Software Development :: Libraries :: Python Modules',
-          ],
+      ],
       keywords='mime-type',
       author='Joe Gregorio',
       author_email='joe@bitworking.org',
@@ -41,4 +42,3 @@ Contents:
       py_modules=['mimeparse'],
       zip_safe=True,
       )
-
