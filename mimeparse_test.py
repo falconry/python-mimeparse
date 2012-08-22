@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 Python tests for Mime-Type Parser.
 
