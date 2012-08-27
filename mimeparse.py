@@ -72,7 +72,7 @@ def parse_media_range(range):
     return (type, subtype, params)
 
 
-def fitness_and_quality_parsed(mime_type, parsed_ranges):
+def quality_and_fitness_parsed(mime_type, parsed_ranges):
     """Find the best match for a mime-type amongst parsed media-ranges.
 
     Find the best match for a given mime-type against a list of media_ranges
@@ -103,7 +103,7 @@ def fitness_and_quality_parsed(mime_type, parsed_ranges):
                 best_fitness = fitness
                 best_fit_q = params['q']
 
-    return best_fitness, float(best_fit_q)
+    return float(best_fit_q), best_fitness
 
 
 def quality_parsed(mime_type, parsed_ranges):
@@ -115,7 +115,7 @@ def quality_parsed(mime_type, parsed_ranges):
     bahaves the same as quality() except that 'parsed_ranges' must be a list of
     parsed media ranges. """
 
-    return fitness_and_quality_parsed(mime_type, parsed_ranges)[1]
+    return quality_and_fitness_parsed(mime_type, parsed_ranges)[0]
 
 
 def quality(mime_type, ranges):
@@ -153,12 +153,12 @@ def best_match(supported, header):
     weighted_matches = []
     pos = 0
     for mime_type in supported:
-        weighted_matches.append((fitness_and_quality_parsed(mime_type,
+        weighted_matches.append((quality_and_fitness_parsed(mime_type,
                                  parsed_header), pos, mime_type))
         pos += 1
     weighted_matches.sort()
 
-    return weighted_matches[-1][0][1] and weighted_matches[-1][2] or ''
+    return weighted_matches[-1][0][0] and weighted_matches[-1][2] or ''
 
 
 def _filter_blank(i):
