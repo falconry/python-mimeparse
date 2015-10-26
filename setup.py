@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 
 import os
+import codecs
 import mimeparse
 from setuptools import setup
 
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    path = os.path.join(os.path.dirname(__file__), fname)
+    return codecs.open(path, encoding='utf-8').read()
 
 setup(
     name="python-mimeparse",
