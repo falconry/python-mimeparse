@@ -5,15 +5,16 @@ Python tests for Mime-Type Parser.
 This module loads a json file and converts the tests specified therein to a set
 of PyUnitTestCases. Then it uses PyUnit to run them and report their status.
 """
-__version__ = "0.1"
-__author__ = 'Ade Oshineye'
-__email__ = "ade@oshineye.com"
-__credits__ = ""
-
 import json
 import mimeparse
 import unittest
 from functools import partial
+
+
+__version__ = "0.1"
+__author__ = 'Ade Oshineye'
+__email__ = "ade@oshineye.com"
+__credits__ = ""
 
 
 def test_parse_media_range(args, expected):
