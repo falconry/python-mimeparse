@@ -65,7 +65,7 @@ def parse_media_range(range):
     necessary.
     """
     (type, subtype, params) = parse_mime_type(range)
-    if not 'q' in params or not params['q'] or \
+    if 'q' not in params or not params['q'] or \
             float(params['q']) > 1 or float(params['q']) < 0:
         params['q'] = '1'
 
