@@ -16,45 +16,58 @@ __author__ = 'Ade Oshineye'
 __email__ = "ade@oshineye.com"
 __credits__ = ""
 
+class MimeParseTestCase(unittest.TestCase):
 
-def test_parse_media_range(args, expected):
-    expected = tuple(expected)
-    result = mimeparse.parse_media_range(args)
-    message = "Expected: '%s' but got %s" % (expected, result)
-    assert expected == result, message
+    def setUp(self):
+        super(MimeParseTestCase, self).setUp()
+        with open("testdata.json") as f:
+            self.test_data = json.load(f)
 
-
-def test_quality(args, expected):
-    result = mimeparse.quality(args[0], args[1])
-    message = "Expected: '%s' but got %s" % (expected, result)
-    assert expected == result, message
-
-
-def test_best_match(args, expected):
-    result = mimeparse.best_match(args[0], args[1])
-    message = "Expected: '%s' but got %s" % (expected, result)
-    assert expected == result, message
+    def _test_parse_media_range(self, args, expected):
+        expected = tuple(expected)
+        result = mimeparse.parse_media_range(args)
+        message = "Expected: '%s' but got %s" % (expected, result)
+        self.assertEqual(expected, result, message)
 
 
-def test_parse_mime_type(args, expected):
-    expected = tuple(expected)
-    result = mimeparse.parse_mime_type(args)
-    message = "Expected: '%s' but got %s" % (expected, result)
-    assert expected == result, message
+    def _test_quality(self, args, expected):
+        result = mimeparse.quality(args[0], args[1])
+        message = "Expected: '%s' but got %s" % (expected, result)
+        self.assertEqual(expected, result, message)
 
 
-def add_tests(suite, json_object, func_name, test_func):
-    test_data = json_object[func_name]
-    for test_datum in test_data:
-        args, expected = test_datum[0], test_datum[1]
-        desc = "%s(%s) with expected result: %s" % (func_name, str(args),
-                                                    str(expected))
-        if len(test_datum) == 3:
-            desc = test_datum[2] + " : " + desc
-        func = partial(test_func, *(args, expected))
-        testcase = unittest.FunctionTestCase(func, description=desc)
-        suite.addTest(testcase)
+    def _test_best_match(self, args, expected, description):
+        if expected is None:
+            self.assertRaises(mimeparse.MimeTypeParseException, mimeparse.best_match, args[0], args[1])
+        else:
+            result = mimeparse.best_match(args[0], args[1])
+            message = "Expected: '%s' but got %s. Description for this test: %s" % (expected, result, description)
+            self.assertEqual(expected, result, message)
 
+    def _test_parse_mime_type(self, args, expected):
+        if expected is None:
+            self.assertRaises(mimeparse.MimeTypeParseException, mimeparse.parse_mime_type, args)
+        else:
+            expected = tuple(expected)
+            result = mimeparse.parse_mime_type(args)
+            message = "Expected: '%s' but got %s" % (expected, result)
+            self.assertEqual(expected, result, message)
+
+    def test_parse_media_range(self):
+        for args, expected in self.test_data['parse_media_range']:
+            self._test_parse_media_range(args, expected)
+
+    def test_quality(self):
+        for args, expected in self.test_data['quality']:
+            self._test_quality(args, expected)
+
+    def test_best_match(self):
+        for args, expected, description in self.test_data['best_match']:
+            self._test_best_match(args, expected, description)
+
+    def test_parse_mime_type(self):
+        for args, expected in self.test_data['parse_mime_type']:
+            self._test_parse_mime_type(args, expected)
 
 def run_tests():
     json_object = json.load(open("testdata.json"))
@@ -69,5 +82,5 @@ def run_tests():
     test_runner.run(suite)
 
 
-if __name__ == "__main__":
-    run_tests()
+if __name__ == '__main__':
+    unittest.main()

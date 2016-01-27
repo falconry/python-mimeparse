@@ -26,6 +26,10 @@ __license__ = 'MIT License'
 __credits__ = ''
 
 
+class MimeTypeParseException(Exception):
+    pass
+
+
 def parse_mime_type(mime_type):
     """Parses a mime-type into its component parts.
 
@@ -45,6 +49,10 @@ def parse_mime_type(mime_type):
     # single '*'. Turn it into a legal wildcard.
     if full_type == '*':
         full_type = '*/*'
+
+    if '/' not in full_type:
+        raise MimeTypeParseException(u"Can't parse type \"{}\"".format(full_type))
+
     (type, subtype) = full_type.split('/')
 
     return (type.strip(), subtype.strip(), params)
