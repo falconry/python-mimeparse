@@ -22,3 +22,7 @@ The Python tests require Python 2.6.
 
 Run the tests by typing:
 python mimeparse_test.py
+
+To make sure that the package works in all the supported environments, you can run tox tests:
+pip install tox
+tox
