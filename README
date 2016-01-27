@@ -23,10 +23,6 @@ The Python tests require Python 2.6.
 Run the tests by typing:
 python mimeparse_test.py
 
-Make sure the package conforms to the PEP8 style guide:
-pep8 --statistics --show-source --ignore=E501 --exclude=venv .
-
-Check the code for simple warnings and errors:
-pyflakes mimeparse.py mimeparse_test.py setup.py
-
-You may need to install pep8 and pyflakes via pip to run these 2 tests.
+To make sure that the package works in all the supported environments, you can run tox tests:
+pip install tox
+tox
