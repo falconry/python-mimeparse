@@ -34,11 +34,13 @@
     [[["image/*", "application/xml"], "image/*"], "image/*", "match using a wildcard for both requested and supported"],
     [[["image/jpeg", "text/plain"], "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"], "image/jpeg", "media type with highest associated quality factor should win, not necessarily most specific"],
     [[["text/html", "application/rdf+xml"], "text/html, application/rdf+xml"], "application/rdf+xml", "match should use highest order of supported when there is a tie"],
-    [[["application/rdf+xml", "text/html"], "text/html, application/rdf+xml"], "text/html", "match should use highest order of supported when there is a tie"]
+    [[["application/rdf+xml", "text/html"], "text/html, application/rdf+xml"], "text/html", "match should use highest order of supported when there is a tie"],
+    [[["application/json", "text/html"], "text"], null, "match should use the default if an invalid Accept header is passed"]
 ],
 
 "parse_mime_type": [
     ["application/xhtml;q=0.5", ["application", "xhtml", {"q": "0.5"}]],
-    ["application/xhtml;q=0.5;ver=1.2", ["application", "xhtml", {"q": "0.5", "ver": "1.2"}]]
+    ["application/xhtml;q=0.5;ver=1.2", ["application", "xhtml", {"q": "0.5", "ver": "1.2"}]],
+    ["text", null]
 ]
 }
