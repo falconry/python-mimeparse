@@ -8,7 +8,6 @@ of PyUnitTestCases. Then it uses PyUnit to run them and report their status.
 import json
 import mimeparse
 import unittest
-from functools import partial
 
 
 __version__ = "0.1"
