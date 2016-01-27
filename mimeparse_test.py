@@ -16,6 +16,7 @@ __author__ = 'Ade Oshineye'
 __email__ = "ade@oshineye.com"
 __credits__ = ""
 
+
 class MimeParseTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -29,12 +30,10 @@ class MimeParseTestCase(unittest.TestCase):
         message = "Expected: '%s' but got %s" % (expected, result)
         self.assertEqual(expected, result, message)
 
-
     def _test_quality(self, args, expected):
         result = mimeparse.quality(args[0], args[1])
         message = "Expected: '%s' but got %s" % (expected, result)
         self.assertEqual(expected, result, message)
-
 
     def _test_best_match(self, args, expected, description):
         if expected is None:
@@ -68,18 +67,6 @@ class MimeParseTestCase(unittest.TestCase):
     def test_parse_mime_type(self):
         for args, expected in self.test_data['parse_mime_type']:
             self._test_parse_mime_type(args, expected)
-
-def run_tests():
-    json_object = json.load(open("testdata.json"))
-
-    suite = unittest.TestSuite()
-    add_tests(suite, json_object, "parse_media_range", test_parse_media_range)
-    add_tests(suite, json_object, "quality", test_quality)
-    add_tests(suite, json_object, "best_match", test_best_match)
-    add_tests(suite, json_object, "parse_mime_type", test_parse_mime_type)
-
-    test_runner = unittest.TextTestRunner(verbosity=1)
-    test_runner.run(suite)
 
 
 if __name__ == '__main__':
