@@ -16,7 +16,7 @@ setup(
     version=mimeparse.__version__,
     description=("A module provides basic functions for parsing mime-type "
                  "names and matching them against a list of media-ranges."),
-    author="David Tsai",
+    author="DB Tsai",
     author_email="dbtsai@dbtsai.com",
     url="https://github.com/dbtsai/python-mimeparse",
     download_url=("http://pypi.python.org/packages/source/p/python-mimeparse/"
