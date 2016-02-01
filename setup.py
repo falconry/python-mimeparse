@@ -13,7 +13,7 @@ def read(fname):
 setup(
     name="python-mimeparse",
     py_modules=["mimeparse"],
-    version=1.5,
+    version=mimeparse.__version__,
     description=("A module provides basic functions for parsing mime-type "
                  "names and matching them against a list of media-ranges."),
     author="DB Tsai",
