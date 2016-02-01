@@ -2,3 +2,4 @@
 .*.sw[po]
 .tox
 *.egg-info
+dist/
