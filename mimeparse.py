@@ -26,7 +26,7 @@ __license__ = 'MIT License'
 __credits__ = ''
 
 
-class MimeTypeParseException(Exception):
+class MimeTypeParseException(ValueError):
     pass
 
 
