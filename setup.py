@@ -32,5 +32,5 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    long_description=read('README')
+    long_description=read('README.md')
 )

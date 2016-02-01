@@ -1,13 +1,14 @@
 Metadata-Version: 1.1
 Name: python-mimeparse
-Version: 0.1.4
+Version: 0.1.4.1
 Summary: A module provides basic functions for parsing mime-type names and matching them against a list of media-ranges.
 Home-page: https://github.com/dbtsai/python-mimeparse
-Author: David Tsai
+Author: DB Tsai
 Author-email: dbtsai@dbtsai.com
 License: UNKNOWN
-Download-URL: http://pypi.python.org/packages/source/p/python-mimeparse/python-mimeparse-0.1.4.tar.gz
-Description: 
+Download-URL: http://pypi.python.org/packages/source/p/python-mimeparse/python-mimeparse-0.1.4.1.tar.gz
+Description: # Travis CI Build Status [![Build Status](https://travis-ci.org/dbtsai/python-mimeparse.svg?branch=master)](https://travis-ci.org/dbtsai/python-mimeparse)
+        
         This module provides basic functions for handling mime-types. It can handle
         matching mime-types against a list of media-ranges. See section 14.1 of
         the HTTP specification [RFC 2616] for a complete explanation.
@@ -20,6 +21,22 @@ Description:
             - quality():           Determines the quality ("q") of a mime-type when compared against a list of media-ranges.
             - quality_parsed():    Just like quality() except the second parameter must be pre-parsed.
             - best_match():        Choose the mime-type with the highest quality ("q") from a list of candidates.
+        
+        Testing
+        =======
+        The format of the JSON test data file is as follows:
+        A top-level JSON object which has a key for each of the functions to be tested. The value corresponding to that key is a list of tests. Each test contains: the argument or arguments to the function being tested, the expected results and an optional description.
+        
+        Python
+        ======
+        The Python tests require Python 2.6.
+        
+        Run the tests by typing:
+        python mimeparse_test.py
+        
+        To make sure that the package works in all the supported environments, you can run tox tests:
+        pip install tox
+        tox
         
 Keywords: mime-type
 Platform: UNKNOWN
