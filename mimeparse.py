@@ -19,7 +19,7 @@ Contents:
 """
 from functools import reduce
 
-__version__ = '1.5'
+__version__ = '1.5.1'
 __author__ = 'Joe Gregorio'
 __email__ = 'joe@bitworking.org'
 __license__ = 'MIT License'
