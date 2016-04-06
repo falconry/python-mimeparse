@@ -50,10 +50,11 @@ def parse_mime_type(mime_type):
     if full_type == '*':
         full_type = '*/*'
 
-    if '/' not in full_type:
+    type_parts = full_type.split('/') if '/' in full_type else None
+    if not type_parts or len(type_parts) > 2:
         raise MimeTypeParseException("Can't parse type \"{}\"".format(full_type))
 
-    (type, subtype) = full_type.split('/')
+    (type, subtype) = type_parts
 
     return (type.strip(), subtype.strip(), params)
 
