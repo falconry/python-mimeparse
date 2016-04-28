@@ -8,6 +8,7 @@
     ["application/xml ; q=1;b=other",["application", "xml", {"q": "1", "b":"other"}]],
     ["application/xml ; q=2;b=other",["application", "xml", {"q": "1", "b":"other"}]],
     ["application/xml ; q=0",["application", "xml", {"q": "0"}]],
+    ["application/xml ; q=foo", ["application", "xml", {"q": "1"}]],
     [" *; q=.2",["*", "*", {"q": ".2"}]]
 ],
 
