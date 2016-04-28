@@ -4,6 +4,7 @@
     ["application/xml", ["application", "xml", {"q": "1"}]],
     ["application/xml;q=",["application", "xml", {"q": "1"}]],
     ["application/xml ;q=",["application", "xml", {"q": "1"}]],
+    ["application/xml ;q=-1",["application", "xml", {"q": "1"}]],
     ["application/xml ; q=1;b=other",["application", "xml", {"q": "1", "b":"other"}]],
     ["application/xml ; q=2;b=other",["application", "xml", {"q": "1", "b":"other"}]],
     ["application/xml ; q=0",["application", "xml", {"q": "0"}]],
