@@ -72,8 +72,9 @@ def parse_media_range(range):
     necessary.
     """
     (type, subtype, params) = parse_mime_type(range)
+    params.setdefault('q', params.pop('Q', None))  # q is case insensitive
     try:
-        if not params.get('q') or not 0 <= float(params['q']) <= 1:
+        if not params['q'] or not 0 <= float(params['q']) <= 1:
             params['q'] = '1'
     except ValueError:  # from float()
         params['q'] = '1'
