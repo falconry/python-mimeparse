@@ -41,6 +41,7 @@
 "parse_mime_type": [
     ["application/xhtml;q=0.5", ["application", "xhtml", {"q": "0.5"}]],
     ["application/xhtml;q=0.5;ver=1.2", ["application", "xhtml", {"q": "0.5", "ver": "1.2"}]],
+    ["application/xhtml;q=0.5;foo=\"bar quux\"", ["application", "xhtml", {"q": "0.5", "foo": "bar quux"}]],
     ["text", null],
     ["text/something/invalid", null]
 ]
