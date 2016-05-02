@@ -18,6 +18,7 @@ Contents:
  - best_match():        Choose the mime-type with the highest quality ('q')
                           from a list of candidates.
 """
+import cgi
 from functools import reduce
 
 __version__ = '1.5.2'
@@ -41,11 +42,7 @@ def parse_mime_type(mime_type):
 
        ('application', 'xhtml', {'q', '0.5'})
     """
-    parts = mime_type.split(';')
-    params = dict([tuple([s.strip() for s in param.split('=', 1)])
-                  for param in parts[1:]
-                   ])
-    full_type = parts[0].strip()
+    full_type, params = cgi.parse_header(mime_type)
     # Java URLConnection class sends an Accept header that includes a
     # single '*'. Turn it into a legal wildcard.
     if full_type == '*':
