@@ -1,10 +1,11 @@
 # Travis CI Build Status [![Build Status](https://travis-ci.org/dbtsai/python-mimeparse.svg?branch=master)](https://travis-ci.org/dbtsai/python-mimeparse)
 
 This module provides basic functions for handling mime-types. It can handle
-matching mime-types against a list of media-ranges. See section 14.1 of
-the HTTP specification [RFC 2616] for a complete explanation.
+matching mime-types against a list of media-ranges. See section 5.3.2 of
+the HTTP 1.1 Semantics and Content specification [RFC 7231] for a complete
+explanation.
 
-   http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
+   https://tools.ietf.org/html/rfc7231#section-5.3.2
 
 Contents:
     - parse_mime_type():   Parses a mime-type into its component parts.
