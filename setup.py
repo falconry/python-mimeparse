@@ -19,8 +19,8 @@ setup(
     author="DB Tsai",
     author_email="dbtsai@dbtsai.com",
     url="https://github.com/dbtsai/python-mimeparse",
-    download_url=("http://pypi.python.org/packages/source/p/python-mimeparse/"
-                  "python-mimeparse-" + mimeparse.__version__ + ".tar.gz"),
+    download_url=("https://github.com/dbtsai/python-mimeparse/tarball/" +
+                  mimeparse.__version__),
     keywords=["mime-type"],
     classifiers=[
         "Programming Language :: Python",
