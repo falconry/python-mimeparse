@@ -1,23 +1,3 @@
-"""MIME-Type Parser
-
-This module provides basic functions for handling mime-types. It can handle
-matching mime-types against a list of media-ranges. See section 5.3.2 of the
-HTTP 1.1 Semantics and Content specification [RFC 7231] for a complete
-explanation.
-
-   https://tools.ietf.org/html/rfc7231#section-5.3.2
-
-Contents:
- - parse_mime_type():   Parses a mime-type into its component parts.
- - parse_media_range(): Media-ranges are mime-types with wild-cards and a 'q'
-                          quality parameter.
- - quality():           Determines the quality ('q') of a mime-type when
-                          compared against a list of media-ranges.
- - quality_parsed():    Just like quality() except the second parameter must be
-                          pre-parsed.
- - best_match():        Choose the mime-type with the highest quality ('q')
-                          from a list of candidates.
-"""
 import cgi
 from functools import reduce
 

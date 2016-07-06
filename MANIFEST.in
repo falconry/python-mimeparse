@@ -1,1 +1,1 @@
-include README.md LICENSE mimeparse_test.py testdata.json
+include README.rst LICENSE mimeparse_test.py testdata.json
