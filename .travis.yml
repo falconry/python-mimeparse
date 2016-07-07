@@ -7,6 +7,7 @@ env:
   - TOXENV=py27
   - TOXENV=py34
   - TOXENV=pypy
+  - TOXENV=pypy3
   - TOXENV=pep8,pyflakes
 
 # https://github.com/travis-ci/travis-ci/issues/4794
