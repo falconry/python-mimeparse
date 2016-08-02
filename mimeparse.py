@@ -41,6 +41,8 @@ def parse_mime_type(mime_type):
     into:
 
        ('application', 'xhtml', {'q', '0.5'})
+
+    :rtype: (str,str,dict)
     """
     full_type, params = cgi.parse_header(mime_type)
     # Java URLConnection class sends an Accept header that includes a
@@ -70,6 +72,8 @@ def parse_media_range(range):
     In addition this function also guarantees that there is a value for 'q'
     in the params dictionary, filling it in with a proper default if
     necessary.
+
+    :rtype: (str,str,dict)
     """
     (type, subtype, params) = parse_mime_type(range)
     params.setdefault('q', params.pop('Q', None))  # q is case insensitive
@@ -90,6 +94,8 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
     the fitness value and the value of the 'q' quality parameter of the best
     match, or (-1, 0) if no match was found. Just as for quality_parsed(),
     'parsed_ranges' must be a list of parsed media ranges.
+
+    :rtype: (float,int)
     """
     best_fitness = -1
     best_fit_q = 0
@@ -123,7 +129,10 @@ def quality_parsed(mime_type, parsed_ranges):
     that have already been parsed by parse_media_range(). Returns the 'q'
     quality parameter of the best match, 0 if no match was found. This function
     behaves the same as quality() except that 'parsed_ranges' must be a list of
-    parsed media ranges. """
+    parsed media ranges.
+
+    :rtype: float
+    """
 
     return quality_and_fitness_parsed(mime_type, parsed_ranges)[0]
 
@@ -138,6 +147,7 @@ def quality(mime_type, ranges):
                   text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5')
     0.7
 
+    :rtype: float
     """
     parsed_ranges = [parse_media_range(r) for r in ranges.split(',')]
 
@@ -157,6 +167,8 @@ def best_match(supported, header):
     >>> best_match(['application/xbel+xml', 'text/xml'],
                    'text/*;q=0.5,*/*; q=0.1')
     'text/xml'
+
+    :rtype: str
     """
     split_header = _filter_blank(header.split(','))
     parsed_header = [parse_media_range(r) for r in split_header]
