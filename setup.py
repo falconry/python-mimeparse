@@ -15,12 +15,15 @@ def get_version(filename):
     return re.search("__version__ = ['\"]([^'\"]+)['\"]", contents).group(1)
 
 version = get_version('mimeparse.py')
+if not version:
+    raise RuntimeError('Cannot find version information')
 
 
 def read(fname):
     path = os.path.join(os.path.dirname(__file__), fname)
     with codecs.open(path, encoding='utf-8') as fp:
         return fp.read()
+
 
 setup(
     name="python-mimeparse",
