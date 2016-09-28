@@ -1,5 +1,4 @@
 import cgi
-from functools import reduce
 
 __version__ = '1.5.2'
 __author__ = 'Joe Gregorio'

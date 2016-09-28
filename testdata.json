@@ -151,6 +151,14 @@
         ],
         [
             [
+                ["text/plain", "text/plain;format=flowed", "text/html"],
+                "text/*, text/plain, text/plain;format=flowed, */*"
+            ],
+            "text/plain;format=flowed",
+            "most specific reference has precedence"
+        ],
+        [
+            [
                 ["application/rdf+xml", "text/html"],
                 "text/html, application/rdf+xml"
             ],
