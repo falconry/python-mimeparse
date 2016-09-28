@@ -2,25 +2,37 @@
 
 import os
 import codecs
-import mimeparse
+import re
 from setuptools import setup
+
+
+def get_version(filename):
+    """
+    Return package version as listed in `__version__` in 'filename'.
+    """
+    with open(filename) as fp:
+        contents = fp.read()
+    return re.search("__version__ = ['\"]([^'\"]+)['\"]", contents).group(1)
+
+version = get_version('mimeparse.py')
 
 
 def read(fname):
     path = os.path.join(os.path.dirname(__file__), fname)
-    return codecs.open(path, encoding='utf-8').read()
+    with codecs.open(path, encoding='utf-8') as fp:
+        return fp.read()
 
 setup(
     name="python-mimeparse",
     py_modules=["mimeparse"],
-    version=mimeparse.__version__,
+    version=version,
     description=("A module provides basic functions for parsing mime-type "
                  "names and matching them against a list of media-ranges."),
     author="DB Tsai",
     author_email="dbtsai@dbtsai.com",
     url="https://github.com/dbtsai/python-mimeparse",
     download_url=("https://github.com/dbtsai/python-mimeparse/tarball/" +
-                  mimeparse.__version__),
+                  version),
     keywords=["mime-type"],
     classifiers=[
         "Programming Language :: Python",
@@ -32,5 +44,5 @@ setup(
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
-    long_description=read('README.md')
+    long_description=read('README.rst')
 )
