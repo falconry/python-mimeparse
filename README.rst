@@ -1,3 +1,6 @@
+Python-MimeParse
+================
+
 .. image:: https://travis-ci.org/dbtsai/python-mimeparse.svg?branch=master
    :target: https://travis-ci.org/dbtsai/python-mimeparse
 
@@ -7,7 +10,7 @@ handle matching mime-types against a list of media-ranges. See section
 a complete explanation: https://tools.ietf.org/html/rfc7231#section-5.3.2
 
 Installation
-============
+------------
 
 Use **pip**:
 
@@ -18,36 +21,31 @@ Use **pip**:
 It supports Python 2.7 - 3.5 and PyPy.
 
 Functions
-=========
+---------
 
-``parse_mime_type()``
-----------------------
+**parse_mime_type()**
 
 Parses a mime-type into its component parts.
 
-``parse_media_range()``
------------------------
+**parse_media_range()**
 
 Media-ranges are mime-types with wild-cards and a "q" quality parameter.
 
-``quality()``
--------------
+**quality()**
 
 Determines the quality ("q") of a mime-type when compared against a list of
 media-ranges.
 
-``quality_parsed()``
---------------------
+**quality_parsed()**
 
 Just like ``quality()`` except the second parameter must be pre-parsed.
 
-``best_match()``
-----------------
+**best_match()**
 
 Choose the mime-type with the highest quality ("q") from a list of candidates.
 
 Testing
-=======
+-------
 
 Run the tests by typing: ``python mimeparse_test.py``. The tests require Python 2.6.
 
