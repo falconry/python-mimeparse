@@ -110,6 +110,9 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
             ])
             fitness += param_matches
 
+            # finally, add the target's "q" param (between 0 and 1)
+            fitness += float(target_params.get('q', 1))
+
             if fitness > best_fitness:
                 best_fitness = fitness
                 best_fit_q = params['q']
