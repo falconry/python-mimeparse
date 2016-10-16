@@ -3,3 +3,5 @@
 .tox
 *.egg-info
 dist/
+build/
+.venv/

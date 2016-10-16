@@ -6,8 +6,9 @@ This module loads a json file and converts the tests specified therein to a set
 of PyUnitTestCases. Then it uses PyUnit to run them and report their status.
 """
 import json
-import mimeparse
 import unittest
+
+import mimeparse
 
 
 __version__ = "0.1"
@@ -36,15 +37,19 @@ class MimeParseTestCase(unittest.TestCase):
 
     def _test_best_match(self, args, expected, description):
         if expected is None:
-            self.assertRaises(mimeparse.MimeTypeParseException, mimeparse.best_match, args[0], args[1])
+            self.assertRaises(mimeparse.MimeTypeParseException,
+                              mimeparse.best_match, args[0], args[1])
         else:
             result = mimeparse.best_match(args[0], args[1])
-            message = "Expected: '%s' but got %s. Description for this test: %s" % (expected, result, description)
+            message = \
+                "Expected: '%s' but got %s. Description for this test: %s" % \
+                (expected, result, description)
             self.assertEqual(expected, result, message)
 
     def _test_parse_mime_type(self, args, expected):
         if expected is None:
-            self.assertRaises(mimeparse.MimeTypeParseException, mimeparse.parse_mime_type, args)
+            self.assertRaises(mimeparse.MimeTypeParseException,
+                              mimeparse.parse_mime_type, args)
         else:
             expected = tuple(expected)
             result = mimeparse.parse_mime_type(args)

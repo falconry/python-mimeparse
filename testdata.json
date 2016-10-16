@@ -15,31 +15,52 @@
 
     "quality": [
         [
-            ["text/html;level=1", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "text/html;level=1",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             1
         ],
         [
-            ["text/html", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "text/html",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             0.7
         ],
         [
-            ["text/plain", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "text/plain",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             0.3
         ],
         [
-            ["image/jpeg", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "image/jpeg",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             0.5
         ],
         [
-            ["text/html;level=2", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "text/html;level=2",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             0.4
         ],
         [
-            ["text/html;level=3", "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"],
+            [
+                "text/html;level=3",
+                "text/*;q=0.3, text/html;q=0.7, text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5"
+            ],
             0.7
         ],
         [
-            ["text/plain", "text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"],
+            [
+                "text/plain",
+                "text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2"
+            ],
             0.2
         ]
     ],
