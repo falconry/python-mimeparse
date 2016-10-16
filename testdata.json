@@ -196,6 +196,14 @@
         ],
         [
             [
+                ["text/html;q=0.9", "application/json", "text/plain;q=0.1"],
+                "*/*"
+            ],
+            "application/json",
+            "*/* match should pick an acceptable type with the highest quality, even if it's implicit"
+        ],
+        [
+            [
                 ["application/json", "text/html"],
                 "text"
             ],
