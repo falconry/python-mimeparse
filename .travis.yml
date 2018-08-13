@@ -6,7 +6,6 @@ python:
 env:
   - TOXENV=py27
   - TOXENV=py34
-  - TOXENV=pypy3
   - TOXENV=flake8
 
 # https://github.com/travis-ci/travis-ci/issues/4794
@@ -14,8 +13,16 @@ matrix:
   include:
     - python: pypy-5.4
       env: TOXENV=pypy
+    - python: pypy3.5-5.8.0
+      env: TOXENV=pypy3
     - python: 3.5
       env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 3.7
+      env: TOXENV=py37
+      dist: xenial
+      sudo: true
 
 # command to install dependencies
 install:

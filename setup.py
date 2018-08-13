@@ -3,6 +3,7 @@
 import codecs
 import os
 import re
+
 from setuptools import setup
 
 
@@ -13,6 +14,7 @@ def get_version(filename):
     with open(filename) as fp:
         contents = fp.read()
     return re.search("__version__ = ['\"]([^'\"]+)['\"]", contents).group(1)
+
 
 version = get_version('mimeparse.py')
 if not version:
