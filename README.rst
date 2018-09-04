@@ -18,7 +18,7 @@ Use **pip**:
 
     $ pip install python-mimeparse
 
-It supports Python 2.7 - 3.5 and PyPy.
+It supports Python 2.7, 3.4+ and PyPy.
 
 Functions
 ---------
