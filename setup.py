@@ -34,6 +34,7 @@ setup(
     description=("A module provides basic functions for parsing mime-type "
                  "names and matching them against a list of media-ranges."),
     author="DB Tsai",
+    license="MIT",
     author_email="dbtsai@dbtsai.com",
     url="https://github.com/dbtsai/python-mimeparse",
     download_url=("https://github.com/dbtsai/python-mimeparse/tarball/" +
