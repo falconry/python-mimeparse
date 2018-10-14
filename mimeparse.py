@@ -97,18 +97,22 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
         # if they do, assess the "fitness" of this mime_type
         if type_match and subtype_match:
 
-            # 100 points if the type matches w/o a wildcard
-            fitness = type == target_type and 100 or 0
+            # 1000 points if the type matches w/o a wildcard
+            fitness = type == target_type and 1000 or 0
 
-            # 10 points if the subtype matches w/o a wildcard
-            fitness += subtype == target_subtype and 10 or 0
+            # 100 points if the subtype matches w/o a wildcard
+            fitness += subtype == target_subtype and 100 or 0
 
-            # 1 bonus point for each matching param besides "q"
+            # 10 bonus points for each matching param besides "q"
             param_matches = sum([
-                1 for (key, value) in target_params.items()
+                10 for (key, value) in target_params.items()
                 if key != 'q' and key in params and value == params[key]
             ])
             fitness += param_matches
+
+            # 1 bonus point if neither has any parameters
+            if (set(target_params) | set(params)) - {'q'} == set():
+                fitness += 1
 
             # finally, add the target's "q" param (between 0 and 1)
             fitness += float(target_params.get('q', 1))
