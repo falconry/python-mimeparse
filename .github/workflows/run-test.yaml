@@ -1,0 +1,72 @@
+name: Run tests
+
+on:
+  push:
+  pull_request:
+
+
+jobs:
+  run-test:
+    name: test-${{ matrix.python-version }}
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        python-version:
+          - "3.6"
+          - "3.7"
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "pypy-3.7"
+
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade tox setuptools
+          pip list
+
+      - name: Run tests
+        run: |
+          tox
+  
+  run-test:
+    name: lint
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        python-version:
+          - "3.10"
+
+      fail-fast: false
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.architecture }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade tox setuptools
+          pip list
+
+      - name: Run tests
+        run: |
+          tox -e flake8
