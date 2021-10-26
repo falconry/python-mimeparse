@@ -41,7 +41,7 @@ jobs:
         run: |
           tox
   
-  run-test:
+  run-lint:
     name: lint
     runs-on: "ubuntu-latest"
     strategy:
@@ -67,6 +67,6 @@ jobs:
           pip install --upgrade tox setuptools
           pip list
 
-      - name: Run tests
+      - name: Run lint
         run: |
           tox -e flake8
