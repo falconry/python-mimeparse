@@ -85,14 +85,9 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
     for (type, subtype, params) in parsed_ranges:
 
         # check if the type and the subtype match
-        type_match = (
-            type in (target_type, '*') or
-            target_type == '*'
-        )
-        subtype_match = (
-            subtype in (target_subtype, '*') or
-            target_subtype == '*'
-        )
+        type_match = type in (target_type, '*') or target_type == '*'
+
+        subtype_match = subtype in (target_subtype, '*') or target_subtype == '*'
 
         # if they do, assess the "fitness" of this mime_type
         if type_match and subtype_match:
