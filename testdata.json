@@ -196,6 +196,14 @@
         ],
         [
             [
+                ["application/json;q=0.2", "application/json;q=0.6;foo=bar"],
+                "application/json"
+            ],
+            "application/json;q=0.6;foo=bar",
+            "q parameter should apply between options of same type"
+        ],
+        [
+            [
                 ["application/json;q=1.0", "text/html;q=0.9", "text/plain;q=0.1"],
                 "*/*"
             ],
