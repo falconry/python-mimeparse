@@ -39,7 +39,7 @@ jobs:
 
       - name: Run tests
         run: |
-          tox
+          tox -e py
   
   run-lint:
     name: lint
