@@ -1,5 +1,3 @@
-import cgi
-
 __version__ = '1.6.0'
 __author__ = 'Joe Gregorio'
 __email__ = 'joe@bitworking.org'
@@ -9,6 +7,40 @@ __credits__ = ''
 
 class MimeTypeParseException(ValueError):
     pass
+
+
+def _parseparam(s):
+    while s[:1] == ';':
+        s = s[1:]
+        end = s.find(';')
+        while end > 0 and (s.count('"', 0, end) - s.count('\\"', 0, end)) % 2:
+            end = s.find(';', end + 1)
+        if end < 0:
+            end = len(s)
+        f = s[:end]
+        yield f.strip()
+        s = s[end:]
+
+
+def _parse_header(line):
+    """Parse a Content-type like header.
+
+    Return the main content-type and a dictionary of options.
+
+    """
+    parts = _parseparam(';' + line)
+    key = parts.__next__()
+    pdict = {}
+    for p in parts:
+        i = p.find('=')
+        if i >= 0:
+            name = p[:i].strip().lower()
+            value = p[i+1:].strip()
+            if len(value) >= 2 and value[0] == value[-1] == '"':
+                value = value[1:-1]
+                value = value.replace('\\\\', '\\').replace('\\"', '"')
+            pdict[name] = value
+    return key, pdict
 
 
 def parse_mime_type(mime_type):
@@ -23,7 +55,7 @@ def parse_mime_type(mime_type):
 
     :rtype: (str,str,dict)
     """
-    full_type, params = cgi.parse_header(mime_type)
+    full_type, params = _parse_header(mime_type)
     # Java URLConnection class sends an Accept header that includes a
     # single '*'. Turn it into a legal wildcard.
     if full_type == '*':
