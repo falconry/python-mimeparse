@@ -9,6 +9,8 @@ class MimeTypeParseException(ValueError):
     pass
 
 
+# Vendored version of cgi._parseparam from Python 3.11 (deprecated and slated
+# for removal in 3.13)
 def _parseparam(s):
     while s[:1] == ';':
         s = s[1:]
@@ -22,6 +24,8 @@ def _parseparam(s):
         s = s[end:]
 
 
+# Vendored version of cgi.parse_header from Python 3.11 (deprecated and slated
+# for removal in 3.13)
 def _parse_header(line):
     """Parse a Content-type like header.
 
