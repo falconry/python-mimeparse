@@ -18,7 +18,7 @@ Use **pip**:
 
     $ pip install python-mimeparse
 
-It supports Python 2.7, 3.4+ and PyPy.
+It supports Python 3.8+ and PyPy.
 
 Functions
 ---------
@@ -47,7 +47,7 @@ Choose the mime-type with the highest quality ("q") from a list of candidates.
 Testing
 -------
 
-Run the tests by typing: ``python mimeparse_test.py``. The tests require Python 2.6.
+Run the tests by typing: ``python mimeparse_test.py``.
 
 To make sure that the package works in all the supported environments, you can
 run **tox** tests:
