@@ -20,19 +20,19 @@ __credits__ = ""
 class MimeParseTestCase(unittest.TestCase):
 
     def setUp(self):
-        super(MimeParseTestCase, self).setUp()
+        super().setUp()
         with open("testdata.json") as f:
             self.test_data = json.load(f)
 
     def _test_parse_media_range(self, args, expected):
         expected = tuple(expected)
         result = mimeparse.parse_media_range(args)
-        message = "Expected: '%s' but got %s" % (expected, result)
+        message = f"Expected: '{expected}' but got {result}"
         self.assertEqual(expected, result, message)
 
     def _test_quality(self, args, expected):
         result = mimeparse.quality(args[0], args[1])
-        message = "Expected: '%s' but got %s" % (expected, result)
+        message = f"Expected: '{expected}' but got {result}"
         self.assertEqual(expected, result, message)
 
     def _test_best_match(self, args, expected, description):
@@ -53,7 +53,7 @@ class MimeParseTestCase(unittest.TestCase):
         else:
             expected = tuple(expected)
             result = mimeparse.parse_mime_type(args)
-            message = "Expected: '%s' but got %s" % (expected, result)
+            message = f"Expected: '{expected}' but got {result}"
             self.assertEqual(expected, result, message)
 
     def test_parse_media_range(self):
