@@ -108,12 +108,12 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
     Find the best match for a given mime-type against a list of media_ranges
     that have already been parsed by parse_media_range(). Returns a tuple of
     the fitness value and the value of the 'q' quality parameter of the best
-    match, or (-1, 0) if no match was found. Just as for quality_parsed(),
+    match, or (0, [-1]) if no match was found. Just as for quality_parsed(),
     'parsed_ranges' must be a list of parsed media ranges.
 
-    :rtype: (float,int)
+    :rtype: (float,list[int])
     """
-    best_fitness = -1
+    best_fitness = [-1]
     best_fit_q = 0
     (target_type, target_subtype, target_params) = \
         parse_media_range(mime_type)
@@ -128,21 +128,27 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
         # if they do, assess the "fitness" of this mime_type
         if type_match and subtype_match:
 
-            # 100 points if the type matches w/o a wildcard
-            fitness = type == target_type and 100 or 0
+            # fitness is a list of metrics in decreasing precedence order
+            fitness = []
 
-            # 10 points if the subtype matches w/o a wildcard
-            fitness += subtype == target_subtype and 10 or 0
+            # 1) type matches w/o a wildcard
+            fitness.append(type == target_type)
 
-            # 1 bonus point for each matching param besides "q"
+            # 2) subtype matches w/o a wildcard
+            fitness.append(subtype == target_subtype)
+
+            # 3) each matching param besides "q"
             param_matches = sum([
                 1 for (key, value) in target_params.items()
                 if key != 'q' and key in params and value == params[key]
             ])
-            fitness += param_matches
+            fitness.append(param_matches)
 
-            # finally, add the target's "q" param (between 0 and 1)
-            fitness += float(target_params.get('q', 1))
+            # 4) target's "q" param (between 0 and 1)
+            fitness.append(float(target_params.get('q', 1)))
+
+            # 5) no extra parameters besides q
+            fitness.append((set(target_params) | set(params)) - {'q'} == set())
 
             if fitness > best_fitness:
                 best_fitness = fitness
