@@ -1,9 +1,6 @@
 Python-MimeParse
 ================
 
-.. image:: https://travis-ci.org/dbtsai/python-mimeparse.svg?branch=master
-   :target: https://travis-ci.org/dbtsai/python-mimeparse
-
 This module provides basic functions for handling mime-types. It can
 handle matching mime-types against a list of media-ranges. See section
 5.3.2 of the HTTP 1.1 Semantics and Content specification [RFC 7231] for
