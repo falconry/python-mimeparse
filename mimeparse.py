@@ -4,6 +4,8 @@ __email__ = 'joe@bitworking.org'
 __license__ = 'MIT License'
 __credits__ = ''
 
+from collections.abc import Generator, Iterable
+
 
 class MimeTypeParseException(ValueError):
     pass
@@ -11,7 +13,7 @@ class MimeTypeParseException(ValueError):
 
 # Vendored version of cgi._parseparam from Python 3.11 (deprecated and slated
 # for removal in 3.13)
-def _parseparam(s):
+def _parseparam(s: str) -> Generator[str, None, None]:
     while s[:1] == ';':
         s = s[1:]
         end = s.find(';')
@@ -26,7 +28,7 @@ def _parseparam(s):
 
 # Vendored version of cgi.parse_header from Python 3.11 (deprecated and slated
 # for removal in 3.13)
-def _parse_header(line):
+def _parse_header(line: str) -> tuple[str, dict[str, str]]:
     """Parse a Content-type like header.
 
     Return the main content-type and a dictionary of options.
@@ -47,7 +49,7 @@ def _parse_header(line):
     return key, pdict
 
 
-def parse_mime_type(mime_type):
+def parse_mime_type(mime_type: str) -> tuple[str, str, dict[str, str]]:
     """Parses a mime-type into its component parts.
 
     Carves up a mime-type and returns a tuple of the (type, subtype, params)
@@ -75,7 +77,7 @@ def parse_mime_type(mime_type):
     return (type.strip(), subtype.strip(), params)
 
 
-def parse_media_range(range):
+def parse_media_range(range: str) -> tuple[str, str, dict[str, str]]:
     """Parse a media-range into its component parts.
 
     Carves up a media range and returns a tuple of the (type, subtype,
@@ -102,7 +104,10 @@ def parse_media_range(range):
     return (type, subtype, params)
 
 
-def quality_and_fitness_parsed(mime_type, parsed_ranges):
+def quality_and_fitness_parsed(
+    mime_type: str,
+    parsed_ranges: Iterable[tuple[str, str, dict[str, str]]],
+) -> tuple[float, float]:
     """Find the best match for a mime-type amongst parsed media-ranges.
 
     Find the best match for a given mime-type against a list of media_ranges
@@ -151,7 +156,7 @@ def quality_and_fitness_parsed(mime_type, parsed_ranges):
     return float(best_fit_q), best_fitness
 
 
-def quality_parsed(mime_type, parsed_ranges):
+def quality_parsed(mime_type: str, parsed_ranges: Iterable[tuple[str, str, dict[str, str]]]) -> float:
     """Find the best match for a mime-type amongst parsed media-ranges.
 
     Find the best match for a given mime-type against a list of media_ranges
@@ -166,7 +171,7 @@ def quality_parsed(mime_type, parsed_ranges):
     return quality_and_fitness_parsed(mime_type, parsed_ranges)[0]
 
 
-def quality(mime_type, ranges):
+def quality(mime_type: str, ranges: str) -> float:
     """Return the quality ('q') of a mime-type against a list of media-ranges.
 
     Returns the quality 'q' of a mime-type when compared against the
@@ -183,7 +188,7 @@ def quality(mime_type, ranges):
     return quality_parsed(mime_type, parsed_ranges)
 
 
-def best_match(supported, header):
+def best_match(supported: Iterable[str], header: str) -> str:
     """Return mime-type with the highest quality ('q') from list of candidates.
 
     Takes a list of supported mime-types and finds the best match for all the
@@ -215,7 +220,7 @@ def best_match(supported, header):
     return weighted_matches[-1][0][0] and weighted_matches[-1][2] or ''
 
 
-def _filter_blank(i):
+def _filter_blank(i: Iterable[str]) -> Generator[str, None, None]:
     """Return all non-empty items in the list."""
     for s in i:
         if s.strip():
