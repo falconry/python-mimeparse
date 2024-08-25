@@ -177,7 +177,7 @@ def quality(mime_type: str, ranges: str) -> float:
     Returns the quality 'q' of a mime-type when compared against the
     media-ranges in ranges. For example:
 
-    >>> quality('text/html','text/*;q=0.3, text/html;q=0.7,
+    >>> quality('text/html','text/*;q=0.3, text/html;q=0.7',
                   text/html;level=1, text/html;level=2;q=0.4, */*;q=0.5')
     0.7
 
