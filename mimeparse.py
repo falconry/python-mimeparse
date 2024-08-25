@@ -4,7 +4,7 @@ __email__ = 'joe@bitworking.org'
 __license__ = 'MIT License'
 __credits__ = ''
 
-from collections.abc import Generator, Iterable
+from typing import Dict, Generator, Iterable, Tuple
 
 
 class MimeTypeParseException(ValueError):
@@ -28,7 +28,7 @@ def _parseparam(s: str) -> Generator[str, None, None]:
 
 # Vendored version of cgi.parse_header from Python 3.11 (deprecated and slated
 # for removal in 3.13)
-def _parse_header(line: str) -> tuple[str, dict[str, str]]:
+def _parse_header(line: str) -> Tuple[str, Dict[str, str]]:
     """Parse a Content-type like header.
 
     Return the main content-type and a dictionary of options.
@@ -49,7 +49,7 @@ def _parse_header(line: str) -> tuple[str, dict[str, str]]:
     return key, pdict
 
 
-def parse_mime_type(mime_type: str) -> tuple[str, str, dict[str, str]]:
+def parse_mime_type(mime_type: str) -> Tuple[str, str, Dict[str, str]]:
     """Parses a mime-type into its component parts.
 
     Carves up a mime-type and returns a tuple of the (type, subtype, params)
@@ -75,7 +75,7 @@ def parse_mime_type(mime_type: str) -> tuple[str, str, dict[str, str]]:
     return (type.strip(), subtype.strip(), params)
 
 
-def parse_media_range(range: str) -> tuple[str, str, dict[str, str]]:
+def parse_media_range(range: str) -> Tuple[str, str, Dict[str, str]]:
     """Parse a media-range into its component parts.
 
     Carves up a media range and returns a tuple of the (type, subtype,
@@ -102,8 +102,8 @@ def parse_media_range(range: str) -> tuple[str, str, dict[str, str]]:
 
 def quality_and_fitness_parsed(
     mime_type: str,
-    parsed_ranges: Iterable[tuple[str, str, dict[str, str]]],
-) -> tuple[float, float]:
+    parsed_ranges: Iterable[Tuple[str, str, Dict[str, str]]],
+) -> Tuple[float, float]:
     """Find the best match for a mime-type amongst parsed media-ranges.
 
     Find the best match for a given mime-type against a list of media_ranges
@@ -150,7 +150,7 @@ def quality_and_fitness_parsed(
     return float(best_fit_q), best_fitness
 
 
-def quality_parsed(mime_type: str, parsed_ranges: Iterable[tuple[str, str, dict[str, str]]]) -> float:
+def quality_parsed(mime_type: str, parsed_ranges: Iterable[Tuple[str, str, Dict[str, str]]]) -> float:
     """Find the best match for a mime-type amongst parsed media-ranges.
 
     Find the best match for a given mime-type against a list of media_ranges
