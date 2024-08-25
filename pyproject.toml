@@ -51,7 +51,7 @@ Chat = "https://gitter.im/falconry/user"
 
 [tool.setuptools]
 license-files = ["LICENSE"]
-py-modules = ["mimeparse"]
+packages = ["mimeparse"]
 
 [tool.setuptools.dynamic]
 version = {attr = "mimeparse.__version__"}
