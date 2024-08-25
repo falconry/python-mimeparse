@@ -4,7 +4,7 @@ __email__ = 'joe@bitworking.org'
 __license__ = 'MIT License'
 __credits__ = ''
 
-from typing import Dict, Generator, Iterable, Tuple
+from typing import Dict, Generator, Iterable, Tuple, Union
 
 
 class MimeTypeParseException(ValueError):
@@ -90,7 +90,7 @@ def parse_media_range(range: str) -> Tuple[str, str, Dict[str, str]]:
     necessary.
     """
     (type, subtype, params) = parse_mime_type(range)
-    params.setdefault('q', params.pop('Q', None))  # q is case insensitive
+    params.setdefault('q', params.pop('Q', '1'))  # q is case insensitive
     try:
         if not params['q'] or not 0 <= float(params['q']) <= 1:
             params['q'] = '1'
@@ -112,8 +112,8 @@ def quality_and_fitness_parsed(
     match, or (-1, 0) if no match was found. Just as for quality_parsed(),
     'parsed_ranges' must be a list of parsed media ranges.
     """
-    best_fitness = -1
-    best_fit_q = 0
+    best_fitness = -1.
+    best_fit_q: Union[float, str] = 0.
     (target_type, target_subtype, target_params) = \
         parse_media_range(mime_type)
 
@@ -128,10 +128,10 @@ def quality_and_fitness_parsed(
         if type_match and subtype_match:
 
             # 100 points if the type matches w/o a wildcard
-            fitness = type == target_type and 100 or 0
+            fitness = type == target_type and 100. or 0.
 
             # 10 points if the subtype matches w/o a wildcard
-            fitness += subtype == target_subtype and 10 or 0
+            fitness += subtype == target_subtype and 10. or 0.
 
             # 1 bonus point for each matching param besides "q"
             param_matches = sum([
