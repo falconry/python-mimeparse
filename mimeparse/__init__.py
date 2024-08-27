@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__version__ = '2.0.0'
+__version__ = '2.1.0.dev1'
 __author__ = 'Joe Gregorio'
 __email__ = 'joe@bitworking.org'
 __license__ = 'MIT License'
