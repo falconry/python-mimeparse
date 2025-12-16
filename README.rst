@@ -3,8 +3,8 @@ Python-MimeParse
 
 This module provides basic functions for handling mime-types. It can
 handle matching mime-types against a list of media-ranges. See section
-5.3.2 of the HTTP 1.1 Semantics and Content specification [RFC 7231] for
-a complete explanation: https://tools.ietf.org/html/rfc7231#section-5.3.2
+12.5.1 of the HTTP Semantics specification [RFC 9110] for a complete
+explanation: https://datatracker.ietf.org/doc/html/rfc9110#name-accept
 
 Installation
 ------------
